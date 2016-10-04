@@ -19,7 +19,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="Senha Atual">Senha Atual</label>
-								<input type="password" name="senha" class="form-control" required>		
+								<input type="password" name="senha" minlength="6" class="form-control" required>		
 							</div>
 						</div>
 					</div>

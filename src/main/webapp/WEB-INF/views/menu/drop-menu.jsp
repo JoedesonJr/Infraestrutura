@@ -9,7 +9,7 @@
     			<hr>
     			<li> <a data-toggle="modal" href="#editar"> <span class="fa fa-cog"></span> Editar Conta</a> </li>
     			<li> <a data-toggle="modal" href="#alterarSenha"> <span class="fa fa-key"></span> Alterar Senha</a> </li>
-    			<li> <a data-toggle="modal" href="#excluirConta"> <span class="fa fa-trash"></span> Excluir Conta</a> </li>
+    			<!-- <li> <a data-toggle="modal" href="#excluirConta"> <span class="fa fa-trash"></span> Excluir Conta</a> </li>  -->
     			<li><a><hr></a></li>
     			<li> <a href="logout"> <span class="glyphicon glyphicon-log-out"></span> Sair</a> </li>
     		</ul>

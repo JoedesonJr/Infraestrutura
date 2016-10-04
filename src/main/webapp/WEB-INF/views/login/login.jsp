@@ -187,7 +187,7 @@
 									<div class="col-md-7">
 										<div class="form-group">
 											<label for="Email">Email</label>
-											<input type="email" name="email" placeholder="Email ..." class="form-control" value="${usuario.email}" required>
+											<input type="email" name="email" placeholder="Email" class="form-control" value="${usuario.email}" required>
 										</div>
 									</div>
 									<div class="col-md-5">

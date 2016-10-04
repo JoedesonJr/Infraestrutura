@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -42,9 +43,10 @@ public class UsuarioController {
 	@RequestMapping("update_Account")
 	public String atualizarConta (Usuario usuario, RedirectAttributes redirectAttributes, HttpSession session) throws Exception{
 
-		Usuario usuarioAutenticado = new UsuarioDAO().autenticarUsuario(usuario);
-
-		if(usuarioAutenticado != null){
+		this.retorno = new UsuarioDAO().autenticar(usuario);
+		
+		if(retorno){
+			this.retorno = false;
 			this.retorno = new UsuarioDAO().modificarConta(usuario, usuario.getSiape());
 			
 			if(retorno){
@@ -56,15 +58,36 @@ public class UsuarioController {
 			
 			return "redirect:login";
 		}else{
-			redirectAttributes.addFlashAttribute("status", "erro_editarConta");
+			redirectAttributes.addFlashAttribute("status", "erro_editarConta_");
 			
 			return "redirect:register";
 		}
 	}
 	
 	@RequestMapping("update_Password")
-	public String atualizarSenha (Usuario usuario, RedirectAttributes redirectAttributes) throws Exception{
+	public String atualizarSenha (Usuario usuario, HttpServletRequest request, 
+			HttpSession session, RedirectAttributes redirectAttributes) throws Exception{
+		
+		String novaSenha = request.getParameter("novaSenha");
 
+		this.retorno = new UsuarioDAO().autenticar(usuario);
+
+		if(retorno){
+			retorno = false;
+			this.retorno = new UsuarioDAO().alterarSenha(usuario.getSiape(), novaSenha);
+			
+			if(retorno){
+				redirectAttributes.addFlashAttribute("status", "alterarSenha");
+			}else{
+				redirectAttributes.addFlashAttribute("status", "erro_alterarSenha");
+			}
+		}else{
+			redirectAttributes.addFlashAttribute("status", "erro_alterarSenha_");
+			
+			return "redirect:register";
+		}
+		session.invalidate();
+		
 		return "redirect:login";
 	}
 	

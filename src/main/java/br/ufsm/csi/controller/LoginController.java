@@ -97,7 +97,7 @@ public class LoginController {
 	
 	@RequestMapping("editAccount")
 	public String modificarConta (Usuario usuario, long siape, HttpSession session, RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception{
-		
+
 		this.retorno = new UsuarioDAO().modificarConta(usuario, siape);
 
 		if(retorno){

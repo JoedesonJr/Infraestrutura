@@ -13,7 +13,7 @@
 						<div class="col-md-7">
 							<div class="form-group" ng-init="nome='${usuarioLogado.nomeCompleto}'">
 								<label for="Nome Completo">Nome Completo</label>
-								<input type="text" name="nomeCompleto" class="form-control" ng-model="nome" required>		
+								<input type="text" name="nomeCompleto" minlength="5" class="form-control" ng-model="nome" required>		
 							</div>
 						</div>
 						<div class="col-md-5">
@@ -35,7 +35,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="Senha">Confirme sua Senha</label>
-								<input type="password" name="senha" class="form-control" required>		
+								<input type="password" name="senha" minlength="6" class="form-control" required>		
 							</div>
 						</div>
 					</div>

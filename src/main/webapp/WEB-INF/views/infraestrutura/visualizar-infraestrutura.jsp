@@ -125,7 +125,7 @@
 					</table>
 					</c:if>
 					<c:if test="${empty infraestruturas}">
-						<h3 class="text-muted text-center">Não há projetos cadastrados.</h3>
+						<h3 class="text-muted text-center">Não há solicitações.</h3>
 					</c:if>
 				</div>
 		</div>

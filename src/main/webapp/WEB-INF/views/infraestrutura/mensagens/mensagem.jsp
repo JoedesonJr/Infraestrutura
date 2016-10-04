@@ -15,6 +15,38 @@
         </div>
     </c:if>
     
+    <c:if test="${status == 'erro_alterarSenha_'}"> 
+        <div class="alert alert-danger" role="alert"> 
+        	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        	<span class="fa fa-close"></span> <strong>Opa! &nbsp</strong> Siape ou senha invalido(s). 
+        </div>
+    </c:if>
+    <c:if test="${status == 'erro_alterarSenha'}"> 
+        <div class="alert alert-danger" role="alert"> 
+        	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        	<span class="fa fa-close"></span> <strong>Opa! &nbsp</strong> Senha não alterada. Tente novamente mais tarde. 
+        </div>
+    </c:if> 
+    <c:if test="${status == 'alterarSenha'}"> 
+        <div class="alert alert-success" role="alert"> 
+        	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        	<span class="glyphicon glyphicon-ok"></span> <strong>Ok! &nbsp</strong> Senha alterada com sucesso. 
+        </div>
+    </c:if>
+    
+    <c:if test="${status == 'erro_editarConta'}"> 
+        <div class="alert alert-danger" role="alert"> 
+        	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        	<span class="fa fa-close"></span> <strong>Opa! &nbsp</strong> Conta não editada. Tente novamente mais tarde. 
+        </div>
+    </c:if>
+    <c:if test="${status == 'erro_editarConta_'}"> 
+        <div class="alert alert-danger" role="alert"> 
+        	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        	<span class="fa fa-close"></span> <strong>Opa! &nbsp</strong> Siape ou Senha invalido(s).
+        </div>
+    </c:if>
+    
     <c:if test="${status == 'erro_removerInfraestrutura'}"> 
         <div class="alert alert-danger" role="alert"> 
         	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

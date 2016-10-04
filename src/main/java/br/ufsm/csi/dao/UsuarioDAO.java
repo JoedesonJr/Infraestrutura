@@ -75,28 +75,29 @@ public class UsuarioDAO {
 	}
 
 	public boolean cadastrarUsuario(Usuario usuario, int codigo) throws Exception{
+		
 		query = " INSERT INTO usuario (siape, nome, email, senha, cadastro, codigo) "
 			+ " VALUES (?,?,?,?,?,?); ";
 				
-			stmt = conn.prepareStatement(query);			
-			stmt.setInt(1, usuario.getSiape());
-			stmt.setString(2, usuario.getNome().toUpperCase());
-			stmt.setString(3, usuario.getEmail());
-			stmt.setString(4, usuario.getSenha());
-			stmt.setBoolean(5, false);
-			stmt.setInt(6, codigo);
+		stmt = conn.prepareStatement(query);			
+		stmt.setInt(1, usuario.getSiape());
+		stmt.setString(2, usuario.getNome().toUpperCase());
+		stmt.setString(3, usuario.getEmail());
+		stmt.setString(4, usuario.getSenha());
+		stmt.setBoolean(5, false);
+		stmt.setInt(6, codigo);
 				
-			try{
-				stmt.execute();
-				stmt.close();
-				conn.close();
+		try{
+			stmt.execute();
+			stmt.close();
+			conn.close();
 
-				return true;
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 
-			return false;
+		return false;
 	}
 
 	public boolean validarConta(int siape, int codigo) {
@@ -148,6 +149,7 @@ public class UsuarioDAO {
 	}
 
 	public boolean reenviarEmail(long siape) {
+		
 		query = " SELECT nome, email, codigo FROM usuario WHERE siape = ?; ";
 		
 		try{
@@ -183,7 +185,7 @@ public class UsuarioDAO {
 				
 		stmt = conn.prepareStatement(this.query);
 				
-		stmt.setString(1, usuario.getNomeCompleto());
+		stmt.setString(1, usuario.getNome());
 		stmt.setString(2, usuario.getEmail());
 		stmt.setLong(3, siape);
 
@@ -204,8 +206,7 @@ public class UsuarioDAO {
 		
 		this.query = " DELETE FROM usuario WHERE siape = ?; ";
 		
-		stmt = conn.prepareStatement(this.query);
-				
+		stmt = conn.prepareStatement(this.query);	
 		stmt.setLong(1, siape);
 
 		try{
@@ -220,5 +221,52 @@ public class UsuarioDAO {
 
 		return false;
 	}
+	
+	public boolean autenticar (Usuario usuario) {
 
+		this.query = " SELECT nome, cadastro, email FROM usuario WHERE siape = ? AND senha = ? ; ";
+			
+		try{
+			stmt = conn.prepareStatement(this.query);
+			stmt.setLong(1, usuario.getSiape());
+			stmt.setString(2, usuario.getSenha());
+				
+			ResultSet rs = stmt.executeQuery();
+				
+			while(rs.next()){
+				return true;
+			}
+			
+			stmt.close();
+			conn.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			
+		return false;
+	}
+
+	public boolean alterarSenha(int siape, String novaSenha) throws Exception{
+		
+		this.query = " UPDATE usuario SET senha = ? "
+			+ " WHERE siape = ? ; ";
+					
+		stmt = conn.prepareStatement(this.query);
+					
+		stmt.setString(1, novaSenha);
+		stmt.setLong(2, siape);
+
+		try{
+			stmt.execute();
+			stmt.close();
+			conn.close();
+
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+	
 }
