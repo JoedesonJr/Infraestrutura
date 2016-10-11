@@ -15,12 +15,11 @@ public class UsuarioDAO {
 	
 	public Usuario autenticarUsuario(Usuario usuario) {
 
-		this.query = " SELECT nome, cadastro, email FROM usuario WHERE siape = ? AND senha = ? ; ";
+		this.query = " SELECT nome, cadastro, email, senha FROM usuario WHERE siape = ?; ";
 			
 		try{
 			stmt = conn.prepareStatement(this.query);
 			stmt.setLong(1, usuario.getSiape());
-			stmt.setString(2, usuario.getSenha());
 				
 			ResultSet rs = stmt.executeQuery();
 				
@@ -28,7 +27,8 @@ public class UsuarioDAO {
 				usuario.setNomeCompleto(rs.getString("nome"));
 				usuario.setEmail(rs.getString("email"));
 				usuario.setCadastro(rs.getBoolean("cadastro"));
-				
+				usuario.setSenha(rs.getString("senha"));
+
 				String[] primeiroNome = usuario.getNomeCompleto().split(" ");
 				usuario.setNome(primeiroNome[0]);
 
@@ -133,7 +133,7 @@ public class UsuarioDAO {
 		query = " UPDATE usuario SET cadastro = true WHERE siape = ?;";
 		
 		try{
-			stmt = conn.prepareStatement(this.query);
+			stmt = conn.prepareStatement(query);
 			stmt.setLong(1, siape);
 				
 			stmt.execute();

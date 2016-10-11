@@ -67,15 +67,14 @@ public class InfraestruturaDAO {
 		return infraestruturas;
 	}
 
-	public boolean remover(int id) throws Exception{
+	public boolean remover(int id) {
 		
 		this.query = " DELETE FROM infraestrutura WHERE id = ?; ";
-		
-		stmt = conn.prepareStatement(this.query);
-				
-		stmt.setLong(1, id);
 
 		try{
+			stmt = conn.prepareStatement(this.query);
+			stmt.setLong(1, id);
+
 			stmt.execute();
 			stmt.close();
 			conn.close();

@@ -12,6 +12,9 @@ public class RecuperarConta implements Runnable{
 	
 	public RecuperarConta(Usuario usuario) {
 		this.usuario = usuario;
+
+		String nome[] = usuario.getNome().split(" ");
+		usuario.setNome(nome[0].substring(0,1) + nome[0].substring(1, nome[0].length()).toLowerCase());
 	}
 	
 	public void sendEmail() throws EmailException {
@@ -24,7 +27,7 @@ public class RecuperarConta implements Runnable{
 		// Destinatário
 		email.addTo(usuario.getEmail(), usuario.getNome());
 		// O email do qual enviará
-		email.setFrom("solicitacaodedamandas@gmail.com", "Solicitacao de Infraestrutura");
+		email.setFrom("solicitacaodedemandas@gmail.com", "Solicitacao de Infraestrutura");
 		// Assunto
 		email.setSubject("Recuperar Senha");
 		// Mensagem
@@ -35,7 +38,7 @@ public class RecuperarConta implements Runnable{
 
 		email.setSSL(true);
 		// Autenticar Email
-		email.setAuthentication("solicitacaodedamandas@gmail.com", "politecnicoufsm");
+		email.setAuthentication("solicitacaodedemandas@gmail.com", "politecnicoufsm");
 		
 		email.send();
 		

@@ -32,21 +32,38 @@ public class LoginController {
 	@RequestMapping("authenticate")
 	public String autenticarUsuario (Usuario usuario, HttpSession session, RedirectAttributes redirectAttributes) throws Exception{
 
+		String senha = usuario.getSenha();
 		Usuario usuarioAutenticado = new UsuarioDAO().autenticarUsuario(usuario);
 
-		if(usuarioAutenticado != null){
-			if(usuarioAutenticado.getCadastro()){  
-				session.setAttribute("usuarioLogado", usuarioAutenticado);
-				return "redirect:register";
+		if(usuarioAutenticado != null) {  // usuário tem conta
+			if(senha.equals(usuarioAutenticado.getSenha())) {  // usuário acertou a senha
+				usuarioAutenticado.setSenha("");
+
+				if(usuarioAutenticado.getCadastro()) {  // usuário com a conta autenticada
+					session.setAttribute("usuarioLogado", usuarioAutenticado);
+
+					return "redirect:register";
+				}
+				else {  // usuário sem a conta autenticada
+					redirectAttributes.addFlashAttribute("status", "cadastroInvalidado");
+					session.setAttribute("usuario", usuarioAutenticado);
+
+					return "redirect:login";
+				}
 			}
-			else{ 
-				redirectAttributes.addFlashAttribute("status", "cadastroInvalidado");
-				session.setAttribute("usuario", usuarioAutenticado);
+			else {  // usuário errou a senha
+				redirectAttributes.addFlashAttribute("status", "_erro_login_");
+
+				String nome[] = usuarioAutenticado.getNome().split(" ");
+				usuarioAutenticado.setNome(nome[0].substring(0,1) + nome[0].substring(1, nome[0].length()).toLowerCase());
+				redirectAttributes.addFlashAttribute("usuario", usuarioAutenticado);
+
 				return "redirect:login";
 			}
 		}
-		else{
+		else {  // usuário não tem conta
 			redirectAttributes.addFlashAttribute("status", "erro_login");
+
 			return "redirect:login";
 		}
 	}

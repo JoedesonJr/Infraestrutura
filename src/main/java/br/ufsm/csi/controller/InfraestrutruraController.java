@@ -22,20 +22,21 @@ public class InfraestrutruraController {
 		this.retorno = new InfraestruturaDAO().solicitar(infraestrutura);
 
 		if(retorno){
-			redirectAttributes.addFlashAttribute("status", "cadastroInfraestrutura");	
+			redirectAttributes.addFlashAttribute("status", "cadastroInfraestrutura");
 		}else{
 			redirectAttributes.addFlashAttribute("status", "erro_cadastroInfraestrutura");
 		}
-		
+
 		return "redirect:register";
 	}
 	
 	@RequestMapping("view")
 	public String teste (Usuario usuario, Model model) throws Exception{
 		model.addAttribute("infraestruturas", new InfraestruturaDAO().listaSolicitacao(usuario.getSiape()));
-		
+
 		return "infraestrutura/visualizar-infraestrutura";
 	}
+
 	
 	@RequestMapping("edit")
 	public String editar (Infraestrutura infraestrutura, Model model) throws Exception{

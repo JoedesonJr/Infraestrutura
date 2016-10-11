@@ -91,10 +91,4 @@ public class UsuarioController {
 		return "redirect:login";
 	}
 	
-	@RequestMapping("remove_Account")
-	public String excluirConta (Usuario usuario, RedirectAttributes redirectAttributes) throws Exception{
-
-		return "redirect:login";
-	}
-	
 }

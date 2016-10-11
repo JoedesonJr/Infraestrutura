@@ -14,6 +14,9 @@ public class CriarConta implements Runnable{
 	public CriarConta(Usuario usuario, int codigo) {
 		this.usuario = usuario;
 		this.codigo = codigo;
+
+		String nome[] = usuario.getNome().split(" ");
+		usuario.setNome(nome[0].substring(0,1) + nome[0].substring(1, nome[0].length()).toLowerCase());
 	}
 	
 	public void sendEmail() throws EmailException {
@@ -27,7 +30,7 @@ public class CriarConta implements Runnable{
 		// Destinatário
 		email.addTo(usuario.getEmail(), usuario.getNome());
 		// O email do qual enviará
-		email.setFrom("solicitacaodedamandas@gmail.com", "Solicitacao de Infraestrutura");
+		email.setFrom("solicitacaodedemandas@gmail.com", "Solicitacao de Infraestrutura");
 		// Assunto
 		email.setSubject("Autenticar Cadastro");
 		// Mensagem
@@ -38,7 +41,7 @@ public class CriarConta implements Runnable{
 
 		email.setSSL(true);
 		// Autenticar Email
-		email.setAuthentication("solicitacaodedamandas@gmail.com", "politecnicoufsm");
+		email.setAuthentication("solicitacaodedemandas@gmail.com", "politecnicoufsm");
 		
 		email.send();
 	}
