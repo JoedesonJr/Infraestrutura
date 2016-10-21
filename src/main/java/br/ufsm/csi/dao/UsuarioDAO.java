@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import br.ufsm.csi.email.CriarConta;
-import br.ufsm.model.Usuario;
+import br.ufsm.csi.model.Usuario;
 
 public class UsuarioDAO {
 

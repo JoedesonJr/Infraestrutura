@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufsm.csi.dao.InfraestruturaDAO;
-import br.ufsm.model.Infraestrutura;
-import br.ufsm.model.Usuario;
+import br.ufsm.csi.model.Infraestrutura;
+import br.ufsm.csi.model.Usuario;
 
 @Controller
 @SessionAttributes("usuario")

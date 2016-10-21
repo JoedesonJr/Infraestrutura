@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import br.ufsm.model.Infraestrutura;
+import br.ufsm.csi.model.Infraestrutura;
 
 public class InfraestruturaDAO {
 

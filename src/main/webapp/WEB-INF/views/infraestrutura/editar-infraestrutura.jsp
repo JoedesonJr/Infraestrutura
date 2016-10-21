@@ -25,102 +25,112 @@
     <body>
     	<br>
     	<div class="container">	
-    	
-		<!-- CABEÇALHO -->
-		<div class="row">
-    		<div class="col-md-10">
-    			<h1 class="text-muted"> <span class="fa fa-university"></span> Solicitação de Infraestrutura</h1>
-    		</div>
-    		<div class="col-md-2">
-    			<jsp:include page="../menu/drop-menu.jsp"></jsp:include>
-    		</div>
-    	</div>
-		
-		<!-- MENU -->
-		<ul class="nav nav-tabs" style="margin-top: 2%;" id="menu">
-			<li role="presentation"><a class="text-primary" href="register">Solicitar</a></li>
-			<li role="presentation"><a class="text-primary" href="view">Modificar</a></li>
-			<li role="presentation"  class="active"><a class="text-primary" href="#">Editar</a></li>
-		</ul>
 
-		<!-- CAMINHO -->
-		<ol class="breadcrumb" style="margin-top: 3%;">
-	  		<li><a class="text-primary" href="http://200.132.36.170:8080/PortalProjetos/"><i class="fa fa-home" aria-hidden="true"></i> Portal de Projetos</a></li>
-	  		<li><a class="text-primary" href="view">Modificar Solicitação</a></li>
-	  		<li class="active">Editar Solicitação</li>
-	  		<li></li>
-		</ol>			
-
-		<div class="row" style="margin-top: 2%">
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
-				<c:forEach var="infra" items="${infraestruturas}">
-				<form action="update" method="post" autocomplete="off">	
-					<input type="hidden" name="id" value="${infra.id}" />	
-					<div class="row">
-						<div class="col-md-3">
-							<label for="Siape">Siape</label> 
-							<input type="hidden" name="siape"
-								value="${usuarioLogado.siape}" /> <input type="text"
-								class="form-control" value="${usuarioLogado.siape}"
-								placeholder="Siape" disabled />
-						</div>
-						<div class="col-md-9">
-							<label for="Nome Completo">Proponente</label> 
-							<input type="text"
-								class="form-control" value="${usuarioLogado.nome}"
-								placeholder="Nome Completo" disabled />
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-md-5">
-							<label for="Email">Email</label> 
-							<input type="text"
-								class="form-control" value="${usuarioLogado.email}"
-								placeholder="Email" disabled />
-						</div>
-						<div class="col-md-4">
-							<label for="Prédio">Prédio</label> 
-							<div ng-init="item.predio='${infra.predio}'"></div>
-							<select class="form-control" name="predio" ng-model="item.predio" required>
-								<option value="">--- Selecione um Prédio ---</option>
-								<option value="Bloco A">Bloco A</option>
-								<option value="Bloco B">Bloco B</option>
-								<option value="Bloco C">Bloco C</option>
-								<option value="Bloco D">Bloco D</option>
-								<option value="Bloco E">Bloco E</option>
-								<option value="Bloco F">Bloco F</option>
-								<option value="Prédio 70 - Carnes">Prédio 70 - Carnes</option>
-								<option value="Prédio 70 - Agroindustria">Prédio 70 - Agroindustria</option>
-								<option value="Predio 72">Predio 72</option>
-								<option value="Outro">Outro</option>
-							</select>
-						</div>
-						<div class="col-md-3" ng-init="item.sala='${infra.sala}'">
-							<label for="Sala">Sala</label> 
-							<input type="text" class="form-control" name="sala" ng-model="item.sala" placeholder="Sala" required />
-						</div>
-					</div>
-					<hr>
-					<div class="form-group" ng-init="item.solicitacao='${infra.solicitacao}'">
-						<label for="Solicitação">Solicitação</label>
-						<textarea class="form-control" rows="4" minlength="5" name="solicitacao" ng-model="item.solicitacao" required></textarea>
-					</div>
-					<hr>
-					<button class="btn btn-primary" type="submit"margin-bottom: 1%;">
-						<span class="glyphicon glyphicon-ok"></span> Alterar
-					</button>
-				</form>
-				</c:forEach>
+			<!-- CABEÇALHO -->
+			<div class="row">
+				<div class="col-md-10">
+					<h1 class="text-muted"> <span class="fa fa-university"></span> Solicitação de Infraestrutura</h1>
+				</div>
+				<div class="col-md-2">
+					<jsp:include page="../menu/drop-menu.jsp"></jsp:include>
+				</div>
 			</div>
-			<div class="col-md-1"></div>
-		</div>
+
+			<!-- MENU -->
+			<ul class="nav nav-tabs" style="margin-top: 2%;" id="menu">
+				<li role="presentation"><a class="text-primary" href="register">Solicitar</a></li>
+				<li role="presentation"><a class="text-primary" href="view">Modificar</a></li>
+				<li role="presentation"  class="active"><a class="text-primary" href="#">Editar</a></li>
+			</ul>
+
+			<!-- CAMINHO -->
+			<ol class="breadcrumb" style="margin-top: 3%;">
+				<li><a class="text-primary" href="http://200.132.36.170:8080/PortalProjetos/"><i class="fa fa-home" aria-hidden="true"></i> Portal de Projetos</a></li>
+				<li><a class="text-primary" href="view">Modificar Solicitação</a></li>
+				<li class="active">Editar Solicitação</li>
+				<li></li>
+			</ol>
+
+			<div class="row" style="margin-top: 2%">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<c:forEach var="infra" items="${infraestruturas}">
+					<form action="update" method="post" autocomplete="off">
+						<input type="hidden" name="id" value="${infra.id}" />
+						<div class="row">
+							<div class="col-md-3">
+								<label for="Siape">Siape</label>
+								<input type="hidden" name="siape"
+									value="${usuarioLogado.siape}" /> <input type="text"
+									class="form-control" value="${usuarioLogado.siape}"
+									placeholder="Siape" disabled />
+							</div>
+							<div class="col-md-9">
+								<label for="Nome Completo">Proponente</label>
+								<input type="text"
+									class="form-control" value="${usuarioLogado.nome}"
+									placeholder="Nome Completo" disabled />
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-5">
+								<label for="Email">Email</label>
+								<input type="text"
+									class="form-control" value="${usuarioLogado.email}"
+									placeholder="Email" disabled />
+							</div>
+							<div class="col-md-4">
+								<label for="Prédio">Prédio</label>
+								<div ng-init="item.predio='${infra.predio}'"></div>
+								<select class="form-control" name="predio" ng-model="item.predio" required>
+									<option value="">--- Selecione um Prédio ---</option>
+									<option value="Bloco A">Bloco A</option>
+									<option value="Bloco B">Bloco B</option>
+									<option value="Bloco C">Bloco C</option>
+									<option value="Bloco D">Bloco D</option>
+									<option value="Bloco E">Bloco E</option>
+									<option value="Bloco F">Bloco F</option>
+									<option value="Prédio 70 - Carnes">Prédio 70 - Carnes</option>
+									<option value="Prédio 70 - Agroindustria">Prédio 70 - Agroindustria</option>
+									<option value="Predio 72">Predio 72</option>
+									<option value="Outro">Outro</option>
+								</select>
+							</div>
+							<div class="col-md-3" ng-init="item.sala='${infra.sala}'">
+								<label for="Sala">Sala</label>
+								<input type="text" class="form-control" name="sala" ng-model="item.sala" placeholder="Sala" required />
+							</div>
+						</div>
+						<hr>
+						<div class="form-group" ng-init="item.solicitacao='${infra.solicitacao}'">
+							<label for="Solicitação">Solicitação</label>
+							<textarea class="form-control" rows="4" minlength="5" name="solicitacao" ng-model="item.solicitacao" required></textarea>
+						</div>
+						<hr>
+						<button class="btn btn-primary" type="submit" style="margin-bottom: 1%;">
+							<span class="glyphicon glyphicon-ok"></span> Alterar
+						</button>
+					</form>
+					</c:forEach>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
 			
-	    <!-- RODAPE -->
-		<jsp:include page="../rodape/rodape.jsp"></jsp:include>
-		
+			<!-- RODAPE -->
+			<jsp:include page="../rodape/rodape.jsp"></jsp:include>
     	</div>
+
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+						(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-85149828-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	    <script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
 	</body>

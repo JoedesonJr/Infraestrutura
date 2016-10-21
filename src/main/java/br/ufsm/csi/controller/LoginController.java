@@ -10,7 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufsm.csi.dao.UsuarioDAO;
 import br.ufsm.csi.email.RecuperarConta;
-import br.ufsm.model.Usuario;
+import br.ufsm.csi.model.Usuario;
 
 
 @Controller

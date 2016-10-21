@@ -7,13 +7,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufsm.csi.dao.UsuarioDAO;
 import br.ufsm.csi.email.CriarConta;
-import br.ufsm.model.Usuario;
+import br.ufsm.csi.model.Usuario;
 
 @Controller
 public class UsuarioController {

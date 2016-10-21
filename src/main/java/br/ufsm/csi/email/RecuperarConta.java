@@ -3,7 +3,7 @@ package br.ufsm.csi.email;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
-import br.ufsm.model.Usuario;
+import br.ufsm.csi.model.Usuario;
 
 
 public class RecuperarConta implements Runnable{
